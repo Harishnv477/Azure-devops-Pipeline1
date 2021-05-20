@@ -13,4 +13,3 @@ jobs:
 - job:job1
   steps:
     - script: echo Hello, java world!
-        displayName: 'Run a one-line script'
