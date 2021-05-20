@@ -14,22 +14,28 @@ stages:
   jobs:
   - job: firstjob
     steps:
-    - script: echo Hello, world!
+    - script: |
+        echo Hello, world!
+        echo $(Pipelinelevelvariable)
   - job: secondjob
     steps:
     - script: echo Qa Deploy
 - stage: DevDeploy
+  variables:
+    environment: dev
   dependsOn: build
   jobs:
   - job: devjob
     steps:
-    - script: echo dev Deploy
+    - script: echo $(environment) Deploy
 - stage: QADeploy
+  variables:
+    environment: QA
   dependsOn: 
   - build
   - DevDeploy 
   jobs:
   - job: QAjob
     steps:
-    - script: echo Qa Deploy
+    - script: echo $(environment) Deploy
 
