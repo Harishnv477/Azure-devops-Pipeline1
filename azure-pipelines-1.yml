@@ -15,7 +15,7 @@ stages:
   - job: firstjob
     steps: 
     - bash: echo $(Pipelinelevelvariable)
-    - bash: java - version
+    - bash: java -version
     - bash: mvn --version
     - bash: ls -R $(Build.ArtifactStagingDirectory)
     - task: CopyFiles@2
