@@ -15,13 +15,21 @@ stages:
   - job: firstjob
     steps:
     - script: echo Hello, world!
-- stage: QADeploy
-  jobs:
-  - job: firstjob
+  - job: secondjob
     steps:
     - script: echo Qa Deploy
 - stage: DevDeploy
+  dependsOn: build
   jobs:
-  - job: firstjob
+  - job: devjob
     steps:
     - script: echo dev Deploy
+- stage: QADeploy
+  dependsOn: 
+  - build
+  - DevDeploy 
+  jobs:
+  - job: QAjob
+    steps:
+    - script: echo Qa Deploy
+
